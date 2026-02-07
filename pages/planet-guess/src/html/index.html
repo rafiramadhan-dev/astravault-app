@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planet Guess</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="nebula"></div>
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- HOME BUTTON -->
+    <button class="home-btn" onclick="showExitModal()">HOME</button>
+
+    <!-- EXIT CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="exitModal">
+      <div class="modal-box">
+        <div class="modal-icon">🚀</div>
+        <h3 class="modal-title">KELUAR DARI GAME?</h3>
+        <p class="modal-text">Progress kamu akan hilang. Yakin ingin kembali ke menu utama?</p>
+        <div class="modal-buttons">
+          <button class="modal-btn cancel" onclick="closeExitModal()">BATAL</button>
+          <button class="modal-btn confirm" onclick="goToHome()">YA, KELUAR</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-wrapper">
+      <!-- Start Screen -->
+      <div id="startScreen" class="screen">
+        <div class="planet-view">🪐</div>
+        <h1 class="game-title">
+          PLANET GUESS
+          <br />
+          QUEST
+        </h1>
+        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.7">Audio: ON 🔊 | Jelajahi Tata Surya!</p>
+
+        <div class="difficulty-menu">
+          <button class="diff-btn easy" onclick="startGame('easy')">MUDAH 🟢</button>
+          <button class="diff-btn medium" onclick="startGame('medium')">SEDANG 🟡</button>
+          <button class="diff-btn hard" onclick="startGame('hard')">SULIT 🔴</button>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="gameScreen" class="hidden">
+        <div class="game-header">
+          <div class="stats-bar">
+            <div class="stat-card">
+              <div class="stat-label">Soal</div>
+              <div class="stat-value" id="questionNum">1/15</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Nyawa</div>
+              <div class="stat-value" id="livesDisplay">❤️❤️❤️</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Skor</div>
+              <div class="stat-value" id="scoreDisplay">0</div>
+            </div>
+          </div>
+          <div class="timer-container">
+            <div class="timer-track"><div class="timer-fill" id="timerFill"></div></div>
+          </div>
+        </div>
+        <div class="game-content">
+          <div class="question-box">
+            <div class="planet-view" id="planetIcon">🌍</div>
+            <p class="question-text" id="questionText">Memuat...</p>
+          </div>
+          <div class="options-grid" id="optionsGrid"></div>
+        </div>
+        <div class="feedback-overlay" id="feedback"></div>
+      </div>
+
+      <!-- Result Screen -->
+      <div id="resultScreen" class="screen hidden">
+        <h2 class="game-title">MISI SELESAI</h2>
+        <div id="rankBadge" style="font-family: &quot;Press Start 2P&quot;; margin: 20px 0; color: var(--accent)">RANK S</div>
+        <div id="finalScore" style="font-size: 3rem; font-weight: 800; margin-bottom: 20px">0</div>
+
+        <div style="display: flex; gap: 10px; width: 100%; margin-top: 20px">
+          <button class="diff-btn easy" onclick="location.reload()" style="justify-content: center; flex: 1">🔄 MAIN LAGI</button>
+          <button class="diff-btn cancel" onclick="goToHome()" style="justify-content: center; flex: 1; border-color: var(--primary); color: var(--primary)">HOME</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Planet Shooter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <!-- Background -->
+    <div id="starfield"></div>
+
+    <!-- Header -->
+    <header>
+      <h1>
+        <iconify-icon icon="noto:rocket"></iconify-icon>
+        PLANET SHOOTER
+      </h1>
+      <div class="score-panel">
+        <div class="score-item">
+          <div class="score-label">
+            <iconify-icon icon="game-icons:trophy"></iconify-icon>
+            LEVEL
+          </div>
+          <div class="score-value" id="levelDisplay">1</div>
+        </div>
+        <div class="score-item timer-item" id="timerItem">
+          <div class="score-label">
+            <iconify-icon icon="mdi:clock-outline"></iconify-icon>
+            TIME
+          </div>
+          <div class="score-value" id="timerDisplay">60</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">
+            <iconify-icon icon="noto:star"></iconify-icon>
+            SCORE
+          </div>
+          <div class="score-value" id="scoreDisplay">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">
+            <iconify-icon icon="noto:bullseye"></iconify-icon>
+            BEST
+          </div>
+          <div class="score-value" id="highScoreDisplay">0</div>
+        </div>
+        <div class="score-item combo-item" id="comboItem">
+          <div class="score-label">
+            <iconify-icon icon="noto:collision"></iconify-icon>
+            COMBO
+          </div>
+          <div class="score-value" id="comboDisplay">0x</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Game Container -->
+    <div id="gameContainer">
+      <div class="controls">
+        <button onclick="toggleSound()" id="soundBtn" title="Toggle Sound">
+          <iconify-icon icon="mdi:volume-high"></iconify-icon>
+        </button>
+        <button onclick="restartGame()" title="Restart">
+          <iconify-icon icon="mdi:refresh"></iconify-icon>
+        </button>
+        <button onclick="goHome()" title="Home">
+          <iconify-icon icon="mdi:home"></iconify-icon>
+        </button>
+      </div>
+      <div class="aim-guide" id="aimGuide">
+        <iconify-icon icon="game-icons:targeting"></iconify-icon>
+        TAP ANYWHERE TO SHOOT
+      </div>
+      <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- How to Play Screen -->
+    <div id="startScreen" class="start-screen" style="display: flex">
+      <div class="start-box">
+        <h1 style="color: #6bb6ff">
+          <iconify-icon icon="noto:game-die"></iconify-icon>
+          PLANET SHOOTER
+        </h1>
+
+        <div class="rules-container">
+          <div class="rule-card">
+            <iconify-icon icon="noto:direct-hit" class="rule-icon"></iconify-icon>
+            <h3>Cara Bermain</h3>
+            <p>
+              Tap layar untuk menembak planet. Match
+              <strong>3+</strong>
+              planet yang sama untuk menghancurkan!
+            </p>
+          </div>
+
+          <div class="rule-card">
+            <iconify-icon icon="noto:fire" class="rule-icon"></iconify-icon>
+            <h3>Sistem Poin</h3>
+            <p>
+              • Match 3:
+              <strong>+15 poin</strong>
+              <br />
+              • Match 4:
+              <strong>+20 poin</strong>
+              <br />
+              • Match 5+:
+              <strong>+25 poin</strong>
+            </p>
+          </div>
+
+          <div class="rule-card">
+            <iconify-icon icon="noto:collision" class="rule-icon"></iconify-icon>
+            <h3>Combo Bonus</h3>
+            <p>
+              Match planet
+              <strong>sama berturut-turut</strong>
+              :
+              <br />
+              • 2x Combo = poin x2
+              <br />
+              • 3x Combo = poin x3
+              <br />
+              • 4x Combo = poin x4 + 50!
+            </p>
+          </div>
+
+          <div class="rule-card">
+            <iconify-icon icon="noto:trophy" class="rule-icon"></iconify-icon>
+            <h3>Target Level</h3>
+            <p>
+              <strong>Level 1:</strong>
+              900 poin (60s)
+              <br />
+              <strong>Level 2:</strong>
+              600 poin (30s)
+              <br />
+              <strong>Level 3:</strong>
+              500 poin (20s)
+              <br />
+              <strong>TOTAL = 2000 poin!</strong>
+            </p>
+          </div>
+        </div>
+
+        <p style="color: #ffd700; margin: 20px 0; font-size: 0.9rem">
+          <iconify-icon icon="noto:locked"></iconify-icon>
+          Mode
+          <strong>Normal</strong>
+          &
+          <strong>Sulit</strong>
+          terbuka setelah menyelesaikan mode sebelumnya!
+        </p>
+
+        <button class="big-button game-btn pulse-animation" onclick="startGame()">
+          <iconify-icon icon="game-icons:play-button"></iconify-icon>
+          MULAI GAME (MUDAH)
+        </button>
+      </div>
+    </div>
+
+    <!-- Level Transition Screen -->
+    <div id="levelTransitionScreen" class="fullscreen-overlay">
+      <div class="screen-box transition-box">
+        <div class="level-complete-animation">
+          <iconify-icon icon="noto:party-popper" class="celebration-icon"></iconify-icon>
+        </div>
+        <h1 class="rainbow-text">
+          <iconify-icon icon="noto:star"></iconify-icon>
+          LEVEL
+          <span id="completedLevelNumber">1</span>
+          SELESAI!
+        </h1>
+        <p class="score-summary">
+          Skor Level:
+          <strong id="levelScore">0</strong>
+        </p>
+        <p class="total-summary">
+          Total Skor:
+          <strong id="totalScoreDisplay">0</strong>
+        </p>
+
+        <div class="next-level-info">
+          <h2>
+            <iconify-icon icon="noto:rocket"></iconify-icon>
+            LEVEL
+            <span id="nextLevelNumber">2</span>
+          </h2>
+          <p>
+            <iconify-icon icon="mdi:clock-outline"></iconify-icon>
+            Waktu:
+            <strong>
+              <span id="nextLevelTime">30</span>
+              detik
+            </strong>
+          </p>
+          <p>
+            <iconify-icon icon="noto:bullseye"></iconify-icon>
+            Target:
+            <strong>
+              <span id="nextLevelTarget">600</span>
+              poin
+            </strong>
+          </p>
+        </div>
+
+        <button class="big-button game-btn pulse-animation" onclick="continueToNextLevel()">
+          <iconify-icon icon="mdi:arrow-right"></iconify-icon>
+          LANJUT LEVEL
+          <span id="nextLevelBtn">2</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victoryScreen" class="fullscreen-overlay">
+      <div class="screen-box victory-box">
+        <div class="victory-animation">
+          <iconify-icon icon="noto:trophy" class="trophy-icon rotating"></iconify-icon>
+        </div>
+        <h1 class="rainbow-text shimmer">🏆 MISSION COMPLETE! 🏆</h1>
+        <p class="victory-subtitle">SELAMAT! Semua Level Berhasil Diselesaikan!</p>
+
+        <div class="victory-stats">
+          <div class="stat-item">
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <div class="stat-value" id="victoryScore">0</div>
+            <div class="stat-label">Final Score</div>
+          </div>
+          <div class="stat-item">
+            <iconify-icon icon="noto:gem-stone"></iconify-icon>
+            <div class="stat-value" id="victoryHighScore">0</div>
+            <div class="stat-label">Best Score</div>
+          </div>
+          <div class="stat-item">
+            <iconify-icon icon="noto:fire"></iconify-icon>
+            <div class="stat-value" id="maxCombo">0x</div>
+            <div class="stat-label">Max Combo</div>
+          </div>
+        </div>
+
+        <div class="reward-section">
+          <h2>
+            <iconify-icon icon="noto:wrapped-gift"></iconify-icon>
+            REWARD UNLOCKED
+          </h2>
+          <div class="reward-badge">
+            <iconify-icon icon="noto:trophy"></iconify-icon>
+            <p>GALACTIC CHAMPION</p>
+          </div>
+          <p style="color: #00ff7f; margin-top: 15px">
+            Mode
+            <strong>NORMAL</strong>
+            sekarang terbuka!
+          </p>
+        </div>
+
+        <div class="btn-group">
+          <button class="big-button game-btn" onclick="restartGame()">
+            <iconify-icon icon="mdi:refresh"></iconify-icon>
+            MAIN LAGI
+          </button>
+          <button class="secondary-btn" onclick="goHome()">
+            <iconify-icon icon="mdi:home"></iconify-icon>
+            HOME
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="fullscreen-overlay">
+      <div class="screen-box game-over-box">
+        <iconify-icon icon="noto:broken-heart" class="game-over-icon"></iconify-icon>
+        <h1>GAME OVER!</h1>
+        <p class="game-over-reason" id="gameOverReason">Waktu Habis!</p>
+        <p class="level-info">
+          Level
+          <span id="failedLevel">1</span>
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <iconify-icon icon="noto:star"></iconify-icon>
+            <div class="stat-number" id="finalScore">0</div>
+            <div class="stat-name">Score</div>
+          </div>
+          <div class="stat-box">
+            <iconify-icon icon="noto:bullseye"></iconify-icon>
+            <div class="stat-number" id="targetNeeded">900</div>
+            <div class="stat-name">Target</div>
+          </div>
+          <div class="stat-box">
+            <iconify-icon icon="noto:trophy"></iconify-icon>
+            <div class="stat-number" id="finalHighScore">0</div>
+            <div class="stat-name">Best</div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="big-button game-btn" onclick="restartGame()">
+            <iconify-icon icon="mdi:refresh"></iconify-icon>
+            COBA LAGI
+          </button>
+          <button class="secondary-btn" onclick="goHome()">
+            <iconify-icon icon="mdi:home"></iconify-icon>
+            HOME
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        <iconify-icon icon="noto:rocket"></iconify-icon>
+        PLANET SHOOTER | BY HSZAM © 2026
+      </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="index.js"></script>
+  </body>
+</html>
