@@ -1,9 +1,5 @@
 node_modules/
-pages/landing/public/sprite/
-pages/planet-guess/public/sprite/
-pages/planet-shooter/public/sprite/
-pages/space-invaders/public/sprite/
-pages/space-jumper/public/sprite/
+sprite/
 .prettierignore
 .prettierrc
 package.json

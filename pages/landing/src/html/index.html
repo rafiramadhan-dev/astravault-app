@@ -1,113 +1,130 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cosmic Game Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="index.css" />
-  </head>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>astravault.gg</title>
+      <link rel="stylesheet" href="../css/index.css" />
+   </head>
 
-  <body>
-    <!-- Background -->
-    <div id="starfield"></div>
-
-    <!-- Welcome Screen -->
-    <div id="welcome-overlay">
-      <div class="login-container">
-        <div class="login-logo">🪐</div>
-        <h2 class="login-title">
-          PIXEL PLANET
-          <br />
-          QUEST
-        </h2>
-        <p class="login-subtitle">Selamat datang di petualangan luar angkasa!</p>
-
-        <div class="input-group">
-          <input type="text" id="username-input" placeholder="MASUKKAN NAMA ANDA" maxlength="15" />
-        </div>
-
-        <button class="start-button" onclick="startMission()">🚀 START MISSION</button>
-      </div>
-    </div>
-
-    <!-- Score Board -->
-    <div class="score-board">
-      ⭐ SCORE:
-      <span id="score">0</span>
-    </div>
-
-    <!-- Main Menu -->
-    <div id="main-wrapper">
-      <!-- Header -->
-
+   <body>
+      <!-- Heading -->
       <header>
-        <div class="logo-container">
-          <img src="image/logo_sja.png" class="main-logo" alt="Logo" onerror="this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2280%22%3E🪐%3C/text%3E%3C/svg%3E'" />
-        </div>
-        <h1 class="main-title">PIXEL PLANET QUEST</h1>
-        <p id="greeting" class="greeting"></p>
+         <div class="header-container">
+            <div class="logo">
+               <span>astravault.gg</span>
+            </div>
+         </div>
       </header>
 
-      <!-- Games -->
-      <div class="games-grid">
-        <!-- Space Invaders -->
-        <a href="/pages/space-invaders/src/index.html" class="game-card">
-          <span class="play-badge">🎮 PLAY</span>
-          <img src="assets_space invaders/logo game.jpeg" class="game-img" alt="Space Invaders" onerror="this.src = 'https://via.placeholder.com/400x200/1B2845/00F0FF?text=SPACE+INVADERS'" />
-          <div class="game-info">
-            <h3 class="game-title">SPACE INVADERS</h3>
-            <p class="game-desc">Hancurkan armada alien yang menyerang!</p>
-          </div>
-        </a>
+      <!-- Main -->
+      <main class="main-container">
+         <div class="info">
+            <div>
+               <span>"Jelajahi semua permainan dan nikmati keseruan setiap detiknya!"</span>
+            </div>
+         </div>
+         <div class="game">
+            <!-- Row 1 -->
+            <div class="row-1">
+               <div class="game-container">
+                  <div class="game-background">
+                     <a href="/pages/planet-quiz/src/html/index.html">
+                        <div>
+                           <div class="game-image">
+                              <img src="/pages/landing/public/image/PlanetQuizTitle.png" alt="Planet Guess Title" class="game-picture" />
+                           </div>
+                           <div class="game-text">
+                              <div class="game-title">
+                                 <h3 class="title">Planet Quiz</h3>
+                              </div>
+                              <div class="game-desc">
+                                 <span class="desc">Uji pengetahuanmu tentang sistem tata surya!</span>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div class="game-container">
+                  <div class="game-background">
+                     <a href="/pages/planet-shooter/src/html/index.html">
+                        <div>
+                           <div class="game-image">
+                              <img src="/pages/landing/public/image/PlanetShooterTitle.png" alt="Planet Shooter Title" class="game-picture" />
+                           </div>
+                           <div class="game-text">
+                              <div class="game-title">
+                                 <h3 class="title">Planet Shooter</h3>
+                              </div>
+                              <div class="game-desc">
+                                 <span class="desc">Cocokan setiap planet dan dapatkan poin!</span>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            </div>
 
-        <!-- Space Jumper -->
-        <a href="/pages/space-jumper/src/index.html" class="game-card">
-          <span class="play-badge">🎮 PLAY</span>
-          <img src="image/logo_sja.png" class="game-img" alt="Space Jumper" onerror="this.src = 'https://via.placeholder.com/400x200/1B2845/B042FF?text=SPACE+JUMPER'" />
-          <div class="game-info">
-            <h3 class="game-title">SPACE JUMPER</h3>
-            <p class="game-desc">Lompat melewati rintangan di luar angkasa!</p>
-          </div>
-        </a>
+            <!-- Row 2 -->
+            <div class="row-2">
+               <div class="game-container">
+                  <div class="game-background">
+                     <a href="/pages/space-jumper/src/html/index.html">
+                        <div>
+                           <div class="game-image">
+                              <img src="/pages/landing/public/image/SpaceJumperTitle.png" alt="Space Jumper Title" class="game-picture" />
+                           </div>
+                           <div class="game-text">
+                              <div class="game-title">
+                                 <h3 class="title">Space Jumper</h3>
+                              </div>
+                              <div class="game-desc">
+                                 <span class="desc">Lewati banyak rintangan di luar angkasa!</span>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+               <div class="game-container">
+                  <div class="game-background">
+                     <a href="/pages/space-invaders/src/html/index.html">
+                        <div>
+                           <div class="game-image">
+                              <img src="/pages/landing/public/image/SpaceInvadersTitle.png" alt="Space invaders Title" class="game-picture" />
+                           </div>
+                           <div class="game-text">
+                              <div class="game-title">
+                                 <h3 class="title">Space Invaders</h3>
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <rect width="24" height="24" fill="none" />
+                                    <g fill="none">
+                                       <path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="m10.165 4.78l.502.354a2.31 2.31 0 0 0 2.666 0l.502-.355A4.24 4.24 0 0 1 16.285 4h.612c.405 0 .813.025 1.194.16c2.383.846 4.021 3.935 3.903 10.943c-.024 1.412-.354 2.972-1.628 3.581a3.2 3.2 0 0 1-1.393.316a2.74 2.74 0 0 1-1.53-.437c-.915-.599-1.584-1.6-2.554-2.102a4.1 4.1 0 0 0-1.89-.461H11c-.658 0-1.306.158-1.89.46c-.97.504-1.64 1.504-2.553 2.103a2.74 2.74 0 0 1-1.53.437a3.2 3.2 0 0 1-1.393-.316c-1.274-.609-1.604-2.17-1.628-3.581C1.887 8.095 3.526 5.006 5.909 4.16C6.29 4.025 6.7 4 7.103 4h.612c.878 0 1.734.272 2.45.78ZM7.5 9v3M6 10.5h3" />
+                                       <path fill="#000" d="M19 10.25a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-3 0a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0M16.75 8a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5m0 3a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5" />
+                                    </g>
+                                 </svg>
+                              </div>
+                              <div class="game-desc">
+                                 <span class="desc">Hancurkan armada alien yang menyerang!</span>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
 
-        <!-- Planet Shooter -->
-        <a href="/pages/planet-shooter/src/index.html" class="game-card">
-          <span class="play-badge">🎮 PLAY</span>
-          <img src="AssetsPlanetShooter/PlanetShooterTitle.png" class="game-img" alt="Planet Shooter" onerror="this.src = 'https://via.placeholder.com/400x200/1B2845/FF006E?text=PLANET+SHOOTER'" />
-          <div class="game-info">
-            <h3 class="game-title">PLANET SHOOTER</h3>
-            <p class="game-desc">Tembak meteor dan selamatkan planet!</p>
-          </div>
-        </a>
+      <!-- Footer -->
+      <footer>
+         <div class="footer-container">
+            <span>© 2026 astravault.gg dibuat oleh Astravault Group</span>
+         </div>
+      </footer>
 
-        <!-- Planet Guess -->
-        <a href="/pages/planet-guess/src/index.html" class="game-card">
-          <span class="play-badge">🎮 PLAY</span>
-          <img src="image/logo_quest.png" class="game-img" alt="Planet Guess" onerror="this.src = 'https://via.placeholder.com/400x200/1B2845/FFD700?text=GUESS+PLANET'" />
-          <div class="game-info">
-            <h3 class="game-title">PLANET GUESS</h3>
-            <p class="game-desc">Uji pengetahuanmu tentang planet!</p>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-container">
-        <center>
-          <div class="footer-copyright">
-            © 2026
-            <span>PIXEL PLANET QUEST</span>
-            <br />
-            Made with ❤️ by Space Explorers
-          </div>
-        </center>
-      </div>
-    </footer>
-
-    <script src="index.js"></script>
-  </body>
+      <script src="../js/index.js"></script>
+   </body>
 </html>
