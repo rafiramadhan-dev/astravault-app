@@ -52,6 +52,20 @@ header {
 }
 
 /* Main */
+main {
+   background: linear-gradient(135deg, var(--indigo), var(--navy), var(--blue)), linear-gradient(45deg, var(--blue), var(--navy), var(--indigo));
+   background-size:
+      600% 600%,
+      500% 500%;
+   background-blend-mode: screen;
+   display: flex;
+   padding: 1.25rem 5rem;
+   align-items: center;
+   justify-content: space-between;
+   animation: wave 3.2s ease-in-out infinite alternate;
+   flex: 1;
+}
+
 @keyframes wave {
    0% {
       background-position:
@@ -71,20 +85,6 @@ header {
          60% 20%;
       filter: brightness(0.9) saturate(1);
    }
-}
-
-main {
-   background: linear-gradient(135deg, var(--indigo), var(--navy), var(--blue)), linear-gradient(45deg, var(--blue), var(--navy), var(--indigo));
-   background-size:
-      600% 600%,
-      500% 500%;
-   background-blend-mode: screen;
-   display: flex;
-   padding: 1.25rem 5rem;
-   align-items: center;
-   justify-content: space-between;
-   animation: wave 3.2s ease-in-out infinite alternate;
-   flex: 1;
 }
 
 .info {

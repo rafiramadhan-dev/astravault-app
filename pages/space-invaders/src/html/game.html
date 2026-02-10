@@ -8,6 +8,38 @@
    </head>
 
    <body>
+      <!-- Countdown -->
+      <div class="countdown" id="countdown">
+         <div class="countdown-text" id="countdown-text"></div>
+         <div class="countdown-number" id="countdown-number">3</div>
+      </div>
+
+      <!-- Ui -->
+      <div class="ui">
+         <div class="score">
+            Score:
+            <span id="score">0</span>
+         </div>
+
+         <div class="lives">
+            <img src="/pages/space-invaders/public/image/Heart.png" class="heart" />
+            <img src="/pages/space-invaders/public/image/Heart.png" class="heart" />
+            <img src="/pages/space-invaders/public/image/Heart.png" class="heart" />
+            <img src="/pages/space-invaders/public/image/Heart.png" class="heart" />
+            <img src="/pages/space-invaders/public/image/Heart.png" class="heart" />
+         </div>
+      </div>
+
+      <!-- Game Area -->
+      <div class="game-area">
+         <img src="/pages/space-invaders/public/image/SpaceAirCraft.png" class="air-craft" id="air-craft" />
+      </div>
+
+      <!-- Win -->
+      <div id="win" class="overlay hidden">
+         <span class="win-text">Kamu menang!</span>
+      </div>
+
       <script src="../js/game.js"></script>
    </body>
 </html>

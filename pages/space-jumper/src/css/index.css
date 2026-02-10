@@ -1,0 +1,67 @@
+:root {
+   --dark: hsl(0 0% 85%); /* Dark Border */
+   --black: hsl(252 84% 10%); /* Dark Text */
+   --white: hsl(39 100% 98%); /* Light Text & Background */
+   --blue: hsl(227 54% 46%);
+   --navy: hsl(246 58% 18%);
+   --indigo: hsl(270 83% 28%);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   min-height: 100vh;
+   font-family: "Space Mono", monospace;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   /* Background */
+   background: linear-gradient(135deg, var(--indigo), var(--navy), var(--blue)), linear-gradient(45deg, var(--blue), var(--navy), var(--indigo));
+   background-size:
+      600% 600%,
+      500% 500%;
+   background-blend-mode: screen;
+   animation: wave 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+   0% {
+      background-position:
+         20% 60%,
+         80% 30%;
+      filter: brightness(0.95) saturate(0.95);
+   }
+   50% {
+      background-position:
+         70% 40%,
+         30% 70%;
+      filter: brightness(1.15) saturate(1.1);
+   }
+   100% {
+      background-position:
+         40% 80%,
+         60% 20%;
+      filter: brightness(0.9) saturate(1);
+   }
+}
+
+/* Main */
+.main-container {
+   padding: 0.75rem;
+   border-radius: 0.75rem;
+   background: rgba(255, 255, 255, 0.08);
+   backdrop-filter: blur(16px);
+   -webkit-backdrop-filter: blur(16px);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   display: flex;
+   flex-direction: columns;
+   height: 275px;
+   width: 325px;
+   transition: transform 0.3s ease;
+}
